@@ -20,11 +20,12 @@ except ImportError:
 # import soln.babynames as babynames
 import babynames
 
-__author__ = "madarp"
+__author__ = "Albina Tileubergen-Thomas"
 
 
 class Capturing(list):
     """Context Mgr helper for capturing stdout from a function call"""
+
     def __enter__(self):
         self._stdout = sys.stdout
         sys.stdout = self._stringio = StringIO()
@@ -69,7 +70,7 @@ class TestBabynames(unittest.TestCase):
         self.assertFalse(
             glob.glob('*.summary'),
             msg='A summary file should not be created. Just printing.'
-            )
+        )
 
     def test_main_summary(self):
         """Test if babynames.main() creates summary files"""
@@ -95,10 +96,11 @@ class TestBabynames(unittest.TestCase):
         self.assertTrue(
             callable(babynames.extract_names),
             msg="The extract_names function is missing"
-            )
+        )
 
         # Get list of only html files
-        html_file_list = sorted(filter(lambda f: f.endswith('.html'), os.listdir('.')))
+        html_file_list = sorted(
+            filter(lambda f: f.endswith('.html'), os.listdir('.')))
         # Compare each result (actual) list to expected list.
         for f in html_file_list:
             summary_file = os.path.join('tests', f + '.summary')
